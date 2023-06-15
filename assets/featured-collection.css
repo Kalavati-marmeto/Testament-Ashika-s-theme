@@ -1,0 +1,56 @@
+.featured-collection__items {
+  /* display: flex; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.featured-collections__item {
+  width: 50%;
+  /*  display: flex; */
+
+  justify-content: center;
+}
+/*.featured-collection_header h2 {
+  position: relative;
+  margin-bottom: 30px;
+  font-family: "Maven Pro", sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+}
+.featured-collection_header h2::after {
+  content: "";
+  border-bottom: 2px solid #dddddd;
+  width: 80px;
+  height: 8px;
+  position: absolute;
+  bottom: 17px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+.featured-collection_header {
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 60px;
+}
+.viewmore-item a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (min-width: 751px) and (max-width: 980px) {
+  .featured-collections__item {
+    width: 33.33%;
+  }
+}
+
+@media only screen and (min-width: 981px) {
+  .featured-collections__item {
+    width: 20%;
+  }
+}

@@ -1,0 +1,62 @@
+.featured-collection_header {
+  padding: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.product-container {
+  width: 100%;
+  text-align: center;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #ccc;
+  margin-bottom: 20px;
+}
+
+.product-card__image img {
+  max-width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.product-detail {
+  padding: 5px;
+  text-decoration: none;
+}
+
+.product-card__info a {
+  font-size: 16px;
+  margin-top: 0;
+  text-decoration: none;
+  color: black;
+  font-family: "Maven Pro", sans-serif;
+  font-size: 15px;
+  color: #454545;
+}
+
+.product-card__price {
+  display: block;
+  font-size: 15px;
+  margin-top: 10px;
+  color: black;
+  font-family: "Maven Pro", sans-serif;
+  color: #424949;
+}
+
+/*.produ_button {
+  display: inline-block;
+  background-color: #808b96;
+  color: #fbfcfc;
+}
+
+.cart a {
+  text-decoration: none;
+  text-align: center;
+  justify-content: center;
+  align-item: center;
+  color: #fbfcfc;
+} */

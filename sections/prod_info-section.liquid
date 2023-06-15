@@ -1,0 +1,133 @@
+<script src="{{ 'prod_info-section.js' | asset_url }}" defer="defer"></script>
+{{ 'prod_info_section.css' | asset_url | stylesheet_tag }}
+
+<div class="containerr">
+  <div class="prod_info-containerr prod_info-text-{{ section.id }}">
+    <div class="product_information">
+      {%- for block in section.blocks -%}
+        <div class="product__info" {{ block.shopify_attributes }}>
+          <details id="Tabs-{{ block.id }}-{{ section.id }}">
+            <summary>
+              <div class="product__info-summary">
+                <div class="product__info-title">
+                  {{ block.settings.heading | default: block.settings.page.title }}
+                </div>
+
+                <!--
+                  <div class="product_info-icon" style="width:20px; height:20px;">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                      class="icon icon-caret"
+                      viewBox="0 0 10 6"
+                    >
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                -->
+              </div>
+            </summary>
+
+            <div class="product__info-content" id="ProductTab-{{ block.id }}-{{ section.id }}">
+              {{ block.settings.content }}
+              {{ block.settings.page.content }}
+            </div>
+          </details>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="product_images">
+      <div class="pimg">
+        {% if section.settings.product1 != blank %}
+          <img src="{{ section.settings.product1 | img_url: '500x' }}" alt="{{ product.title }}">
+          <div class="pimg_title">{{ product.title }}</div>
+          <div class="pimg-price">{{ product.price | money }}</div>
+          <a href="/product" class="pimg_anchar">Add to Cart</a>
+        {% endif %}
+      </div>
+
+      <div class="pimg">
+        {% if section.settings.product2 != blank %}
+          <img src="{{ section.settings.product2 | img_url: '500x' }}" alt="{{ product.title }}">
+          <div class="pimg_title">Honey Love Lip Dueo</div>
+          <div class="pimg-price">3400</div>
+          <a href="/product" class="pimg_anchar">Add to Cart</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .prod_info-text-{{ section.id }}{
+     background-color:{{section.settings.prod_info_background}};
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "product info section",
+  "class": "homepage-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "prod_info_background",
+      "label": "Background",
+      "default": "#c5c5c5"
+    },
+
+       {
+         "type": "product",
+         "id": "product1",
+         "label":"select Image"
+       },
+  {
+         "type": "product",
+         "id": "product2",
+         "label":"select Image"
+       }
+
+
+  ],
+  "blocks":[
+    {
+
+     "type": "collapsible_tab",
+     "name": "Collapsible tab",
+      "limit":2,
+     "settings": [
+       {
+         "type": "text",
+         "id": "heading",
+         "default": "Collapsible tab",
+         "info": "Include a heading that explains the content.",
+         "label": "Heading"
+       },
+       {
+         "type": "richtext",
+         "id": "content",
+         "label": "Tab content"
+       },
+       {
+           "type": "page",
+           "id": "page",
+           "label": "Tab content from page"
+         }
+     ]
+   }
+
+  ],
+  "presets":[
+    {
+      "name":"product info section"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

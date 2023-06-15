@@ -1,0 +1,121 @@
+{{ 'image-overlay.css' | asset_url | stylesheet_tag }}
+{% assign destktop = section.settings.image_desktop %}
+<div class="image-overlay">
+  <div class="overlay-container ">
+    <div class="overlay-image ">
+      {% render 'image',
+        class: "media media--portrait media-desktop",
+        mobileSrc: section.settings.image_mobile,
+        desktopSrc: section.settings.image_desktop
+      %}
+    </div>
+    <div class="overlay-text-container {{ section.settings.text_align }}">
+      <div class="overlay-position"{{ section.settings.content_position }}
+      
+      <div class="over-heading">
+        {% if section.settings.heading_text != blank %}
+          <h1 class="overlay-heading heading-text-{{section.id}}">{{ section.settings.heading_text }}</h1>
+        {% endif %}
+      </div>
+      <div class="over-paragraph">
+        {% if section.settings.paragraph_text != blank %}
+          <div class="overlay-paragraph paragraph-text-{{ section.id }}">{{ section.settings.paragraph_text }}</div>
+        {% endif %}
+      </div>
+      <div class="over-button">
+        <button class="overlay-btn">Shop Sale</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% style %}
+  
+  .heading-text-{{section.id}}{
+    color:{{section.settings.heading_text_color}};
+    }
+  .paragraph-text-{{section.id}}{
+    color:{{section.settings.paragraph_text_color}};
+    }
+{% endstyle %}
+{% schema %}
+{
+  "name": "Image-overlay",
+  "tag":"section",
+  "class":"homepage",
+  "settings": [
+    {
+    "type":"image_picker",
+    "id":"image_desktop",
+    "label":"image"
+    },
+    {
+    "type":"image_picker",
+    "id":"image_mobile",
+    "label":"image Mobile"
+    },
+   
+    {
+      "type":"text",
+      "id":"heading_text",
+      "label":"heading Text"
+    },
+           {
+      "type":"color",
+      "id":"heading_text_color",
+      "label":"heading text color"
+    },
+    {
+      "type":"text",
+      "id":"paragraph_text",
+      "label":"paragraph Text"
+    },
+           {
+      "type":"color",
+      "id":"paragraph_text_color",
+      "label":"paragraph text color"
+    },
+     {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        { "value": "top-left", "label": "Top left" },
+        { "value": "top-center", "label": "Top center" },
+        { "value": "top-right", "label": "Top right" },
+        { "value": "middle-left", "label": "Middle left" },
+        { "value": "middle-center", "label": "Middle center" },
+        { "value": "middle-right", "label": "Middle right" },
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "bottom-center", "label": "Bottom center" },
+        { "value": "bottom-right", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type":"select",
+      "id":"text_align",
+      "label":"text align",
+      "options":[
+        {
+          "value":"left",
+          "label":"left"
+        },
+        {
+          "value":"center",
+          "label":"center"
+        },
+        {
+          "value":"right",
+          "label":"right"
+        }
+      ],
+      "default":"center"
+    }
+  ],
+  "presets":[
+    {
+      "name":"Image-overlay"
+    }
+  ]
+}
+{% endschema %}

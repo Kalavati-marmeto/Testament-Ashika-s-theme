@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="{{'header2.css' | asset_url}}">
+
+<div class="header-container">
+  <div class="header__menu-icon">
+    <div class="header-section__hamburger" onclick="toggleHamburgerMenu('hamburger-menu')">
+      <svg focusable="false" class="icon icon--hamburger-mobile " viewBox="0 0 20 16" role="presentation">
+        <path d="M0 14h20v2H0v-2zM0 0h20v2H0V0zm0 7h20v2H0V7z" fill="currentColor" fill-rule="evenodd"></path>
+      </svg>
+    </div>
+    
+    <a class="header-container__logo" href="/">
+      {% assign mobile_image = section.settings.image_mobile | default: section.settings.image_desktop %}
+      {% render 'image',
+        class: 'image-gallery-dimension',
+        mobileSrc: mobile_image,
+        desktopSrc: section.settings.image_desktop
+      %}
+    </a>
+    <div id="hamburger-menu" class="expand-nav-bar">
+      <ul class="nav-list">
+         {% for link in section.settings.navigation.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class=header-icons>
+      <a href="/search">
+        <svg focusable="false" class="icon icon--search " viewBox="0 0 21 21" role="presentation">
+          <g stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <path d="M19 19l-5-5" stroke-linecap="square"></path>
+              <circle cx="8.5" cy="8.5" r="7.5"></circle>
+          </g>
+        </svg>
+      </a>
+      <a href="/account">
+        <svg focusable="false" class="icon icon--account " viewBox="0 0 20 22" role="presentation">
+          <path d="M10 13c2.82 0 5.33.64 6.98 1.2A3 3 0 0 1 19 17.02V21H1v-3.97a3 3 0 0 1 2.03-2.84A22.35 22.35 0 0 1 10 13zm0 0c-2.76 0-5-3.24-5-6V6a5 5 0 0 1 10 0v1c0 2.76-2.24 6-5 6z" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </a>
+      <a href="/cart">
+        <svg focusable="false" class="icon icon--cart " viewBox="0 0 27 24" role="presentation">
+          <g transform="translate(0 1)" stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <circle stroke-linecap="square" cx="11" cy="20" r="2"></circle>
+              <circle stroke-linecap="square" cx="22" cy="20" r="2"></circle>
+              <path d="M7.31 5h18.27l-1.44 10H9.78L6.22 0H0"></path>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .header-section {
+      background:{{section.settings.background_color}};
+  }
+  .header-icons{
+    color:black;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+    "name":"Header2",
+    "tag":"header",
+    "class":"header-section",
+    "settings": [
+        {
+        "type":"color",
+        "id":"background_color",
+        "label":"Background color"
+         },
+         {
+            "type": "image_picker",
+            "id":"image_desktop",
+            "label":"Desktop logo image"
+         },
+        {
+      "type": "link_list",
+      "id": "navigation",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+    ],
+  "presets":[
+    {
+      "name":"Header2"
+    }
+  ]
+}
+{% endschema %}

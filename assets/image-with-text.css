@@ -1,0 +1,89 @@
+.container {
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.title {
+  text-align: center;
+  padding: 40px;
+  margin-top: -20px;
+}
+
+.image-text__image img {
+  height: auto;
+  max-width: 100%;
+}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  align-items: center;
+}
+
+.flexbox-item {
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  padding: 0 40px 0 40px;
+}
+
+.image-text__button {
+  width: auto;
+}
+
+.image-text__content {
+  padding: 48px;
+  line-height: 20px;
+}
+.image-text__paragraph a {
+  color: black;
+}
+
+.image-text__heading {
+  font-size: 24px;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+}
+@media only screen and (min-width: 741px) {
+  .image-text .flexbox-item {
+    width: 50%;
+  }
+  .direction-row {
+    flex-direction: row;
+  }
+  .image-text__image {
+    width: 100%;
+    display: cover;
+  }
+  .direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .image-text__content {
+    padding: 45px;
+  }
+  .image-text__image img {
+    width: 100%;
+    aspect-ratio: 2/2.3;
+    object-fit: cover;
+  }
+  .flex-box {
+    max-width: 100%;
+    height: auto;
+  }
+  .image-text__image img {
+    height: 500px;
+    width: 736px;
+  }
+}

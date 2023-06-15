@@ -1,0 +1,105 @@
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'announcement' -%}
+      <div class="announcement-bar color-{{ block.settings.color_scheme }}>
+        {%- if block.settings.text != blank -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">
+          {%- endif -%}
+              <div class="page-width">
+                <p class="announcement-bar__message {{ block.settings.text_alignment }} h5">
+                  <span>{{ block.settings.text | escape }}</span>
+                  {%- if block.settings.link != blank -%}
+                    {% render 'icon-arrow' %}
+                  {%- endif -%}
+                </p>
+              </div>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+  {%- endcase -%}
+{%- endfor -%}
+{% style %}
+  {% for block in section.blocks %}
+  .heading-{{ block.id }} {
+  color: {{ block.settings.heading_text_color }};
+  }
+  .paragraph-{{ block.id }} {
+  color: {{ block.settings.paragraph_text_color }};
+  }
+ 
+  {% endfor %}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "announcement2",
+  "max_blocks": 12,
+  "class": "announcement-bar-2",
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "annuncement-section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading text"
+        },
+        {
+          "type": "color",
+          "id": "heading_text_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "richtext",
+          "id": "paragraph_text",
+          "label": "Paragraph text"
+        },
+        {
+          "type": "color",
+          "id": "paragraph_text_color",
+          "label": "Paragraph color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "align-left"
+            },
+            {
+              "value": "center",
+              "label": "align-center"
+            },
+            {
+              "value": "right",
+              "label": "align-right"
+            }
+          ],
+          "default": "center",
+          "label": "align-center"
+        },
+        
+        {
+          "type": "url",
+          "id": "link",
+          "label": "announcement-link"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement" 
+      }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,192 @@
+<div class="page-width{{ section.id }}">
+  <div class="img-gal ">
+    <div class="grid   grid--3-col-tablet img-gal__block">
+      <div class="scrollbar-img">
+        <div class="text-img-gal ">
+          {% if section.settings.show_richtext %}
+            <div class="richtext-container richtext-bar-{{section.id}} image-gallary__desktop">
+              {% if section.settings.richtext_text != blank %}
+                <div class="text richtext-bar-paragraph-{{section.id}}">
+                  <p class="text-in-p">{{ section.settings.richtext_text }}</p>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="text-img-gal image-gal__item">
+          {% if section.settings.show_richtext %}
+            <div class="richtext-container richtext-bar-{{section.id}} image-gallary__mobile">
+              {% if section.settings.richtext_text != blank %}
+                <div class="text richtext-bar-paragraph-{{section.id}}">
+                  <p class="text-in-p">{{ section.settings.richtext_text }}</p>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          {% for block in section.blocks %}
+            <div class="image-gal__items">
+              {% render 'image',
+                class: 'media media--portrait',
+                mobileSrc: block.settings.image_mobile,
+                desktopSrc: block.settings.image_desktop
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+         .richtext-bar-{{section.id}}{
+           background-color:{{section.settings.richtext_bg_color}};
+             }
+
+       .richtext-container{
+         text-align:center;
+         margin-top:30px;
+       }
+         .richtext-bar-paragraph-{{section.id}}  {
+           font-size:{{section.settings.richtext_font_size}}px;
+           font-weight:{{section.settings.richtext_font_weight}};
+           color:{{section.settings.richtext_text_color}};
+             }
+
+         .text{
+           text-align:center;
+         padding:30px;
+         }
+        .text-in-p p{
+         line-height: 50px;
+         font-size:16px;
+         font-family: 'Maven Pro', sans-serif;
+        }
+
+       a{
+        color:black;
+       }
+      .image-gallary__mobile {
+        display:none;
+      }
+         .image-gallary__desktop {
+        display:none;
+      }
+    .image-gal__item{
+      overflow-x:hidden;
+      flex-wrap:wrap;
+    }
+
+    @media only screen and (min-width:741px) {
+      .img-gal__block {
+        display:block !important;
+      }
+      .image-gal__item {
+        overflow-x:hidden !important;
+        flex-wrap:wrap !important;
+        display: flex !important;
+      flex-direction: row !important;
+        gap:19px;
+
+      }
+        .image-gal__items {
+          width:calc(33.33% - 13.3px) !important;
+
+          min-width:calc(33.33% - 13.3px) !important;
+
+  }
+    }
+
+
+      @media only screen and (max-width: 740px)
+
+           .image-gallary__desktop {
+        display:none;
+      }
+           .image-gallary__mobile {
+          display: block;
+      width: 100%;
+      }
+    .image-gal__items {
+      width: 66%;
+      min-width: 65%;
+
+    }
+    .image-gal__item {
+      display:flex;
+      flex-direction:row;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+    }
+        }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Richtext bar",
+  "tag":"section",
+   "class": "homepage-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_richtext",
+      "label": "Show richtext",
+      "default": true
+    },
+    {
+      "type":"richtext",
+      "id":"richtext_text",
+      "label":"Richtext text"
+    },
+    {
+      "type": "range",
+      "id": "richtext_font_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "richtext_font_weight",
+      "min": 300,
+      "max": 800,
+      "step": 100,
+      "label": "Font weight",
+      "default": 400
+    },
+
+    {
+      "type":"color",
+      "id":"richtext_text_color",
+      "label":"Richtext color"
+    },
+    {
+      "type":"color",
+      "id":"richtext_bg_color",
+      "label":"Richtext bg color"
+    }
+  ],
+  "blocks":[
+    {
+      "name":"Image",
+      "type":"image",
+      "settings":[
+        {
+          "type":"image_picker",
+          "id":"image_desktop",
+          "label":"Image"
+        }
+      ]
+    }
+  ],
+      "presets": [
+      {
+        "name": "Richtext Bar"
+      }
+    ]
+}
+{% endschema %}

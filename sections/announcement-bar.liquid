@@ -1,0 +1,162 @@
+{% if section.settings.show_announcement %}
+  <div class="announcement-container announcement-bar-{{section.id}}">
+    {% if section.settings.announcement_head_text != blank %}
+      <div class="textt_announce announcement-bar-heading-{{section.id}}">
+        <div>{{ section.settings.announcement_head_text }}</div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.announcement_text != blank %}
+      <div class="textt_announce announcement-bar-paragraph-{{section.id}}">
+        <p>{{ section.settings.announcement_text }}</p>
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% comment %}
+     {% for link in linklists['main-menu'].links %}
+    <a href="{{ link.url }}"> {{ link.title }}</a>
+
+    {% for subLink in link.links %}
+      <div>
+        <a href="{{ subLink.title }}">{{ subLink.title }}</a>
+      </div>
+    {% endfor %}
+  {% endfor %}
+{% endcomment %}
+
+{% style %}
+      .announcement-bar-{{section.id}}{
+        background-color:{{section.settings.announcement_bg_color}};
+          }
+
+       .announcement-bar-heading-{{section.id}}{
+        font-size:{{section.settings.announcement_head_font_size}}px;
+        font-weight:{{section.settings.announcement_head_font_weight}};
+        color:{{section.settings.announcement_head_text_color}};
+          }
+    .announcement-container{
+      text-align:center;
+      padding:25px;
+    }
+      .announcement-bar-paragraph-{{section.id}}  {
+        font-size:{{section.settings.announcement_font_size}}px;
+        font-weight:{{section.settings.announcement_font_weight}};
+        color:{{section.settings.announcement_text_color}};
+          }
+
+      .textt_announce{
+        text-align:center;
+        padding:5px;
+      }
+
+     .textt_announce h1{
+    color:white;
+        font-family: 'Maven Pro', sans-serif;
+/*         font-size:25px; */
+  font-weight:bold;
+        padding:30px;
+
+      }
+ .textt_announce a{
+    color:white;
+  }
+
+    @media only screen and (min-width: 990px)
+    {
+      .textt_announce{
+        display:inline-block;
+      }
+    }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag":"section",
+  "class":"homepage-sectionn",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+
+
+{
+      "type":"text",
+      "id":"announcement_head_text",
+      "label":"Announcement Head text"
+    },
+    {
+      "type": "range",
+      "id": "announcement_head_font_size",
+      "min": 18,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "announcement_head_font_weight",
+      "min": 300,
+      "max": 800,
+      "step": 100,
+      "label": "Font weight",
+      "default": 400
+    },
+
+    {
+      "type":"color",
+      "id":"announcement_head_text_color",
+      "label":"Announcement  head color"
+    },
+
+
+    {
+      "type":"richtext",
+      "id":"announcement_text",
+      "label":"Announcement text"
+    },
+    {
+      "type": "range",
+      "id": "announcement_font_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "announcement_font_weight",
+      "min": 300,
+      "max": 800,
+      "step": 100,
+      "label": "Font weight",
+      "default": 400
+    },
+
+    {
+      "type":"color",
+      "id":"announcement_text_color",
+      "label":"Announcement color"
+    },
+    {
+      "type":"color",
+      "id":"announcement_bg_color",
+      "label":"Announcement bg color"
+    }
+  ],
+      "presets": [
+      {
+        "name": "Announcement Bar"
+      }
+    ]
+}
+{% endschema %}

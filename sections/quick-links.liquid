@@ -1,0 +1,85 @@
+<div class="page-width">
+  <div class="grid grid--3-col  grid--4-col-desktop grid--3-col-tablet ">
+    {% for block in section.blocks %}
+      <div class="grid__item textt">
+        {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+          <div class="imagee-texttt btn_color-{{ block.id }}">
+            <a class="btttnn" href="{{ block.settings.button_link }}">
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% style %}
+  {% for block in section.blocks %}
+    .btn_color-{{ block.id }}{
+    background-color:{{block.settings.button_color}};
+    color:{{ block.settings.button_color_text }};
+  }
+  {% endfor %}
+  .btttnn {
+       padding-bottom:30px;
+      color:black;
+      }
+  
+      .imagee-texttt  {
+       text-align:center;
+       margin-top:30px;
+       padding:20px 0;
+        
+     }
+
+  .textt{
+    flex-grow: unset;
+  }
+{% endstyle %}
+
+
+{% schema %}
+{
+  "name": "Quick-links",
+   "class": "homepage-section",
+  "settings": [],
+  "blocks":[
+    {
+      "name":"add link",
+      "type":"text",
+      "settings":[
+      {
+    "type":"text",
+    "id":"button_text",
+    "label":"Button text"
+  },
+   {
+    "type":"url",
+    "id":"button_link",
+    "label":"Button link"
+  },
+  {
+    "type": "color",
+    "id": "button_color",
+    "label": "Button Color"
+    
+  },
+  {
+    "type": "color",
+    "id": "button_color_text",
+    "label": "Button Color Text"
+   
+  }
+    ]
+   }
+  ],
+  "presets":[
+    {
+      "name":"Quick-links"
+    }
+  ]
+}
+{% endschema %}
+
+

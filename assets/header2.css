@@ -1,0 +1,80 @@
+.header-container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 7px 0;
+}
+.header-section__hamburger svg {
+  width: 20px;
+  height: 16px;
+  color: white;
+}
+.expand-nav-bar {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+
+  right: 0;
+  z-index: 0;
+  font-family: "Maven Pro", sans-serif;
+  top: 100%;
+}
+.toggel-display-hamburger {
+  display: block;
+}
+
+.header-container__logo img {
+  max-width: 200px;
+  height: auto;
+  align-content: right;
+}
+.header__menu-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+  position: relative;
+  padding: 20px 0;
+}
+.header-container svg {
+  width: 25px;
+  color: black;
+  margin: 0 9px;
+}
+.nav-list {
+  display: none;
+  list-style-type: none;
+  text-decoration: none;
+  /*   border-bottom: 1px solid #e7e2de; */
+}
+.nav-list li {
+  padding: 8px 0 7px;
+}
+.nav-list a {
+  text-decoration: inherit;
+  color: #3a2a2f;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: 500;
+}
+.expand-nab-bar__contact {
+  padding: 16px 20px;
+  font-family: inherit;
+  border-bottom: 1px solid #e7e2de;
+}
+
+ul {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.expand-nab-bar__social-meidia-icon svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.4;
+  transition: color 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  will-change: opacity;
+  border-radius: 50%;
+}
+.social-meidia-icon__item li {
+  padding: 7px 0;
+}

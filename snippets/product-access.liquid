@@ -1,0 +1,22 @@
+{{ 'product-access.css' | asset_url | stylesheet_tag }}
+<div class="product-container">
+  <div class="product_card">
+    <a class="product-card__image" href="{{ product.url }}">
+      <div class="media media--square" >
+        {% render 'image', class: '', mobileSrc: product.featured_image, desktopSrc: product.featured_image %}
+      </div>
+
+    </a>
+    <div class="product-detail">
+      <div class="product-card__info">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </div>
+
+      <div class="product-card__price">
+        <span>{{ product.price | money }}</span>
+      </div>
+
+  
+    </div>
+  </div>
+</div>

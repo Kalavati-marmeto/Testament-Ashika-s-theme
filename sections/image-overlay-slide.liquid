@@ -1,0 +1,240 @@
+{{ 'image-overlay-slide.css' | asset_url | stylesheet_tag }}
+{% capture slider_options %}
+  {
+    "cellAlign": "left",
+    "contain": true,
+    "pageDots": true,
+    "prevNextButtons": false,
+    "fade": true,
+    "imagesLoaded": true,
+    "autoPlay": true,
+    "autoPlay": 2000
+  }
+{% endcapture %}
+<div class="placeholder">
+  <!-- <div class="page-width"> -->
+  <div class="main-carousel" data-flickity='{{ slider_options }}'>
+    
+    {% for block in section.blocks %} 
+      <div class="slidesshow_items">
+        <div class="slideshow_images">
+          {% render 'image',
+            class: '',
+            mobileSrc: block.settings.image_mobile,
+            desktopSrc: block.settings.image_desktop
+          %}
+        </div>
+        <div class="slideshow_all_content {{ block.settings.content_position }}">
+          <div class="slideshow_content_item {{ block.settings.text_alignment }}">
+            {% if block.settings.heading_text != blank %}
+              <h2 class="slideshow_heading heading-{{ block.id }}">
+                {{ block.settings.heading_text }}
+              </h2>
+            {% endif %}
+            {% if block.settings.paragraph_text != blank %}
+              <div class="slideshow_paragraph paragraph-{{ block.id }}">
+                {{ block.settings.paragraph_text }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+              <a
+                href="{{ block.settings.button_link }}"
+                class="slideshow_button button button--primary button-{{ block.id }} button_color-{{ block.id }}"
+              >
+                {{ block.settings.button_text }}             
+              </a>
+              {% endif %}
+             
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <!-- </div> -->
+</div>
+{% style %}
+  {% for block in section.blocks %}
+  .heading-{{ block.id }} {
+  color: {{ block.settings.heading_text_color }};
+  }
+  .paragraph-{{ block.id }} {
+  color: {{ block.settings.paragraph_text_color }};
+  }
+  .button-{{ block.id }} {
+  background-color: {{ block.settings.button_background_color }};
+  }
+  .button_color-{{ block.id }} {
+  color: {{ block.settings.button_text_color }};
+  }
+  {% endfor %}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Image-overlay-slide",
+  "tag": "section",
+  "class": "slider",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "add image",
+      "type": "dinamic",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (Mobile)"
+        },
+        {
+          "type": "header",
+          "content": "Content settings"
+        },
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading text"
+        },
+        {
+          "type": "color",
+          "id": "heading_text_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "heading_text_color_mobile",
+          "label": "Heading color (Mobile)",
+          "default": "#000000"
+        },
+        {
+          "type": "richtext",
+          "id": "paragraph_text",
+          "label": "Paragraph text"
+        },
+        {
+          "type": "color",
+          "id": "paragraph_text_color",
+          "label": "Paragraph color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "paragraph_text_color_mobile",
+          "label": "Paragraph color (Mobile)",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "button_text_2",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Button Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Color",
+          "default": "#000000"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "options": [
+            {
+              "value": "top-left",
+              "label": "Top left"
+            },
+            {
+              "value": "top-center",
+              "label": "Top center"
+            },
+            {
+              "value": "top-right",
+              "label": "Top right"
+            },
+            {
+              "value": "middle-left",
+              "label": "Middle left"
+            },
+            {
+              "value": "middle-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "middle-right",
+              "label": "Middle right"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom left"
+            },
+            {
+              "value": "bottom-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom right"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Left"
+            },
+            {
+              "value": "text-center",
+              "label": "Center"
+            },
+            {
+              "value": "text-right",
+              "label": "Right"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image-overlay-slide"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,233 @@
+.main-menulist a {
+  font: 16px Maven Pro;
+  color: #454545;
+}
+
+.submenu-list a {
+  font: 16px Maven Pro;
+  color: #454545;
+  line-height: 30px;
+  margin-left: -30px;
+}
+
+.collection-hr {
+  margin-top: -20px;
+  color: #ddd;
+  margin-bottom: 4%;
+}
+.sort-title {
+  color: #85929e;
+  font-size: 15px "Maven Pro";
+  font-weight: unset;
+}
+.main-collection__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 8rem;
+}
+.main-collection__filters,
+.main-collection__products {
+  width: 100%;
+}
+.collection-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+  margin-top: 13%;
+}
+
+.collection-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+.collection-filters__close {
+  min-width: unset;
+  padding: 5px;
+  min-height: unset;
+  background: unset;
+}
+.collection-filters__close svg {
+  width: 18px;
+}
+.collection-filters__item {
+  padding: -1rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  /*   border: 1px solid #e1e1e1; */
+}
+.collection-filters__title {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  gap: 2rem;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.collection-filters__item .icon-caret {
+  width: 12px;
+}
+.collection-filters__item[open] > summary .icon-caret {
+  transform: rotate(180deg);
+}
+.collection-filters__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding-top: 1.5rem;
+}
+/* .collection-filters__list .collection-color ul {
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+} */
+.collection-filters__checkbox {
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+.collection-filters__checkbox input {
+  display: none;
+}
+.collection-filters__checkbox .icon-checkmark {
+  display: none;
+  position: absolute;
+  left: 0.8rem;
+}
+.collection-filters__checkbox input:checked ~ .icon-checkmark {
+  display: block;
+}
+.collection-filters__checkbox--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.collection-sticky-button {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: none;
+  padding: 15px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0px -5px 5px 0px rgb(0 0 0 / 75%);
+  -moz-box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px -5px 5px 0px rgb(0 0 0 / 10%);
+}
+
+.collection-filters__price {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.collection-filters__field input {
+  height: 40px;
+  width: 100px;
+  padding: 5px 10px;
+  border: 1px solid #e1e1e1;
+}
+
+.collection-sort {
+  border: 1px solid #e1e1e1;
+  padding: 0px 30px;
+}
+
+.filter-heading::before {
+  content: "";
+  border-bottom: 2px solid #dddddd;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: 1px;
+  left: calc(30% - 70px);
+}
+/* .collection__horizontal-toolbar .value-list {
+  list-style: none;
+  position: absolute;
+  margin-top: 50px;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-height: 0;
+  transition: 0.3s ease-in-out;
+  z-index: 5;
+}
+
+.collection__horizontal-toolbar .value-list li {
+  position: relative;
+  height: auto;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  line-height: 1.6em;
+  gap: 10px;
+}
+ */
+/* .filter-horizontal-line::before {
+  content: "";
+  border-bottom: 2px solid #dddddd;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  bottom: 1px;
+  left: calc(30% - 70px);
+} */
+
+@media only screen and (min-width: 750px) {
+  .main-collection__filters {
+    width: 20%;
+    margin-right: 30px;
+    margin-top: 10%;
+  }
+  .main-collection__products {
+    width: calc(100% - (20% + 30px));
+  }
+}
+
+@media only screen and (max-width: 989px) {
+  .collection-filters__overlay {
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    background: rgb(0 0 0 / 50%);
+  }
+  .collection-filters {
+    top: 0;
+    right: 0;
+    z-index: 10;
+    width: 90%;
+    height: 100%;
+    padding: 0 1.5rem;
+    overflow: auto;
+    max-width: 400px;
+    background: #fff;
+    position: fixed;
+    transform: translateX(100%);
+    transition: transform 0.25s ease-out;
+  }
+  .main-collection__filters.is--open .collection-filters__overlay {
+    display: block;
+  }
+  .main-collection__filters.is--open .collection-filters {
+    transform: translateX(0);
+  }
+}

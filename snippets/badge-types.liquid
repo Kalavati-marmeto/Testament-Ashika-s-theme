@@ -1,0 +1,48 @@
+<div class="badge_container">
+  {% if settings.badge-saveprice %}
+         <div class="saveprice">
+           {% if product.compare_at_price >product.price %}
+             save{{ product.compare_at_price| minus:product.price }}
+             {% endif %}
+         </div>
+{% endif %}
+
+{%if settings.badge-soldout %} 
+  <div class="soldout">
+     {%- if product.available == false -%}
+        <span class="mm-product-card__badge sold-out" aria-hidden="true">
+          Sold Out
+        </span>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+{%if settings.badge-onsale %}
+  <div class="onsale">
+    {%- if product.compare_at_price > product.price and product.available -%}
+        <span class="mm-product-card__badge on-sale" aria-hidden="true">
+          On Sale
+        </span>
+    {% endif %}
+  </div> 
+  {% endif %}
+
+  {% if settings.badge-NewArrivals %}
+    <div class="newarrivals">
+      {%- for tag in product.tags -%}
+              {%- if tag contains 'badge__' -%}
+                {%- assign badgeText = tag | split: '__' | last -%}
+                <div class="product__badge">{{ badgeText }}</div>
+              {%- endif -%}
+            {%- endfor -%} 
+    </div>
+  {% endif %}
+</div>
+
+
+
+
+
+   
+      
+      

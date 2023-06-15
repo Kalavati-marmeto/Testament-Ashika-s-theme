@@ -1,0 +1,32 @@
+{{ 'image-four-block-access.css' | asset_url | stylesheet_tag }}
+<div class="iproduct-container">
+  <div class="iproduct_card">
+    <a class="iproduct-card__image" href="{{ product.url }}">
+      <div class="media media--square">
+        {% render 'image', class: '', mobileSrc: product.featured_image, desktopSrc: product.featured_image %}
+      </div>
+
+      <!--
+        {% for tag in product.tags %}
+          {% if tag contains 'badge_' %}
+            {{ tag | split: '_' | last }}
+          {% endif %}
+        {% endfor %}
+      -->
+    </a>
+    <div class="iproduct-detail">
+      <div class="iproduct-card__info">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </div>
+
+      <div class="iproduct-card__price">
+        <span>{{ product.price | money }}</span>
+      </div>
+
+     {% comment %} <div class="iproduct-card produ_button">
+        <a href="" class="icart button">Quick Shop</a>
+      </div>
+      {% endcomment %}
+    </div>
+  </div>
+</div>

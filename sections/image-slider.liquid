@@ -1,0 +1,146 @@
+{{ 'image-slider.css' | asset_url | stylesheet_tag }}
+{% style %}
+  .heading-{{ section.id }} {
+    color: {{ section.settings.heading_text_color_mobile }};
+  }
+  .paragraph-{{ section.id }},
+  .paragraph-{{ section.id }} * {
+    color: {{ section.settings.paragraph_text_color_mobile }};
+  }
+  @media only screen and (min-width: 950px) {
+    .heading-{{ section.id }} {
+      color: {{ section.settings.heading_text_color }};
+    }
+    .paragraph-{{ section.id }},
+    .paragraph-{{ section.id }} * {
+      color: {{ section.settings.paragraph_text_color }};
+    }
+  }
+{% endstyle %}
+
+<div class="image-overlay page-width">
+  <div class="image-overlay__media">
+    {% render 'image',
+      class: '',
+      mobileSrc: section.settings.image_mobile,
+      desktopSrc: section.settings.image_desktop
+    %}
+  </div>
+  <div class="image-overlay__content {{ section.settings.content_position }}">
+    <div class="image-overlay__alignment {{ section.settings.text_alignment }}">
+      {% if section.settings.heading_text != blank %}
+        <h2 class="image-overlay__content--heading heading-{{ section.id }}">{{ section.settings.heading_text }}</h2>
+      {% endif %}
+      {% if section.settings.paragraph_text != blank %}
+        <div class="image-overlay__content--paragraph paragraph-{{ section.id }}">
+          {{ section.settings.paragraph_text }}
+        </div>
+      {% endif %}
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="image-overlay__content--button button button--primary">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Image overlay",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (Mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Content settings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading text"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_text_color_mobile",
+      "label": "Heading color (Mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph_text",
+      "label": "Paragraph text"
+    },
+    {
+      "type": "color",
+      "id": "paragraph_text_color",
+      "label": "Paragraph color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "paragraph_text_color_mobile",
+      "label": "Paragraph color (Mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        { "value": "top-left", "label": "Top left" },
+        { "value": "top-center", "label": "Top center" },
+        { "value": "top-right", "label": "Top right" },
+        { "value": "middle-left", "label": "Middle left" },
+        { "value": "middle-center", "label": "Middle center" },
+        { "value": "middle-right", "label": "Middle right" },
+        { "value": "bottom-left", "label": "Bottom left" },
+        { "value": "bottom-center", "label": "Bottom center" },
+        { "value": "bottom-right", "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-right", "label": "Right" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image overlay"
+    }
+  ]
+}
+{% endschema %}

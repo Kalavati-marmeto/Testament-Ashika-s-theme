@@ -1,0 +1,62 @@
+<div class="article-card">
+  <a href="{{ article.url }}" class="article-card__link">
+    {% render 'image', class: 'media media--landscape ', mobileSrc: article.image, desktopSrc: article.image %}
+  </a>
+
+  <div class="article-card__info">
+    <div class="blog-title">{{ article.title}}</div>
+    
+    <div class="article-card__info--description">
+      <p>{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
+    </div>
+
+    <button class="readmore_text">Read more</button>
+  </div>
+</div>
+
+
+<style>
+ /*  .blog-heading h2::after {
+  content: "";
+  border-bottom: 2px solid #dddddd;
+  width: 80px;
+  height: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+   .heading{ 
+    font-size:24px;
+     font-family: 'Maven Pro', sans-serif; 
+     font-weight:bold;
+      text-align:center; 
+     line-height:90px;
+  }
+
+  .article-card__info--description{
+  font-size:16px;
+  font-family: 'Maven Pro', sans-serif;   
+  }
+
+  .blog-title{ 
+    font-size:20px;
+     font-family: 'Maven Pro', sans-serif; 
+  font-weight:bold;
+  }
+
+  .article-card__info{
+    margin-top:25px;
+  }
+
+  .readmore_text{
+    padding:10px;
+    font-size:14px;
+    color:white;
+    background-color:#A29E9E;
+    border:none;
+    border-radius:4px;
+  }
+  
+  
+</style>

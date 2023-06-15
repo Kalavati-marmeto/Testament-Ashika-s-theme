@@ -1,0 +1,8 @@
+{{ 'collection_block_access.css' | asset_url | stylesheet_tag }}
+
+<div class="collection_card">
+  <a href="{{ collection.url }}" class="collection-card_image"> </a>
+  <div class="collection-card_info">
+    <a href="{{ collection.url }}">{{ collection.title }} </a>
+  </div>
+</div>

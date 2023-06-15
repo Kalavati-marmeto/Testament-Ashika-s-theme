@@ -1,0 +1,342 @@
+{{ 'header.css' | asset_url | stylesheet_tag }}
+
+
+<header class="header-container">
+  <div
+    class="header__menu-icon page-width"
+  >
+    <div class="header-section__hamburger" onclick="toggleHamburgerMenu('hamburger-menu')">
+      <svg focusable="false" class="icon icon--hamburger-mobile " viewBox="0 0 20 16" role="presentation">
+        <path d="M0 14h20v2H0v-2zM0 0h20v2H0V0zm0 7h20v2H0V7z" fill="currentColor" fill-rule="evenodd"></path>
+      </svg>
+    </div>
+    <div id="hamburger-menu" class="expand-nav-bar">
+      <ul class="nav-list">
+        {% for link in linklists['warehouse-nav'].links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="expand-nab-bar__contact">
+        <p>NEED HELP?</p>
+        <div>
+          <svg focusable="false" class="icon icon--bi-phone " viewBox="0 0 24 24" role="presentation">
+            <g stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square">
+              <path d="M17 15l-3 3-8-8 3-3-5-5-3 3c0 9.941 8.059 18 18 18l3-3-5-5z" stroke="#3a2a2f"></path>
+              <path d="M14 1c4.971 0 9 4.029 9 9m-9-5c2.761 0 5 2.239 5 5" stroke="#ff6128"></path>
+            </g>
+          </svg>
+          <span>Call us 000-000-0000</span>
+        </div>
+        <div>
+          <svg focusable="false" class="icon icon--bi-email " viewBox="0 0 22 22" role="presentation">
+            <g fill="none" fill-rule="evenodd">
+              <path stroke="#ff6128" d="M.916667 10.08333367l3.66666667-2.65833334v4.65849997zm20.1666667 0L17.416667 7.42500033v4.65849997z"></path>
+              <path stroke="#3a2a2f" stroke-width="2" d="M4.58333367 7.42500033L.916667 10.08333367V21.0833337h20.1666667V10.08333367L17.416667 7.42500033"></path>
+              <path stroke="#3a2a2f" stroke-width="2" d="M4.58333367 12.1000003V.916667H17.416667v11.1833333m-16.5-2.01666663L21.0833337 21.0833337m0-11.00000003L11.0000003 15.5833337"></path>
+              <path d="M8.25000033 5.50000033h5.49999997M8.25000033 9.166667h5.49999997" stroke="#ff6128" stroke-width="2" stroke-linecap="square"></path>
+            </g>
+          </svg>
+          <span>info@yourwebsite.com</span>
+        </div>
+      </div>
+      <div class="expand-nab-bar__social-meidia-icon">
+        <p>Follow Us</p>
+        <ul class="social-meidia-icon__item">
+          <li>
+            <a>{%- render 'social-media-icons' with 'facebook' -%}</a>
+            <span>facebook</span>
+          </li>
+          <li>
+            <a>{%- render 'social-media-icons' with 'twitter' -%}</a>
+            <span>Twitter</span>
+          </li>
+          <li>
+            <a>{%- render 'social-media-icons' with 'instagram' -%}</a>
+            <span>Instagram</span>
+          </li>
+          <li>
+            <a>{%- render 'social-media-icons' with 'youtube' -%}</a>
+            <span>Youtube</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a class="header-container__logo" href="/">
+      {% assign mobile_image = section.settings.image_mobile | default: section.settings.image_desktop %}
+      {% render 'image',
+        class: 'image-gallery-dimension',
+        mobileSrc: mobile_image,
+        desktopSrc: section.settings.image_desktop
+      %}
+    </a>
+    <div class="header__input--desktop-search">
+      <input type="search" class="input--desktop-search" placeholder="search...">
+      <button type="submit" class="header-search__button">
+        <svg focusable="false" class="icon icon--search " viewBox="0 0 21 21" role="presentation">
+          <g stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <path d="M19 19l-5-5" stroke-linecap="square"></path>
+              <circle cx="8.5" cy="8.5" r="7.5"></circle>
+          </g>
+        </svg>
+      </button>
+    </div>
+
+    {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+      {%- capture country_selector -%}
+      <noscript>
+        {%- form 'localization', id: 'HeaderCountryFormNoScript', class: 'localization-form' -%}
+          <div class="localization-form__select">
+            <p class="visually-hidden" id="HeaderCountryLabelNoScript">{{ 'localization.country_label' | t }}</p>
+            <select class="localization-selector link" name="country_code" aria-labelledby="HeaderCountryLabelNoScript">
+              {%- for country in localization.available_countries -%}
+                <option value="{{ country.iso_code }}" {%- if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                  {{ country.currency.iso_code }} {{ country.currency.symbol }}
+                </option>
+              {%- endfor -%}
+            </select>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+        {%- endform -%}
+      </noscript>
+      <localization-form class="on-header">
+        {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+          <div class="no-js-hidden">
+            <span class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</span>
+            <div class="disclosure">
+              <button type="button" class="disclosure__button localization-form__select localization-selector header__icon" aria-expanded="false" aria-controls="HeaderCountryList" aria-describedby="HeaderCountryLabel">
+                {%- unless section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+                  {% render 'icon', icon: 'localization' %}
+                {%- endunless -%}
+                <span class="label">{{ localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})</span>
+                {% render 'icon', icon: 'caret' %}
+              </button>
+              <ul id="HeaderCountryList" role="list" class="disclosure__list list-unstyled" hidden>
+                <li class="disclosure__item" tabindex="-1">
+                  <a class="disclosure__link link disclosure__link--active focus-inset" href="#" aria-current="true" data-value="{{ localization.country.iso_code }}">
+                    {{ localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})
+                  </a>
+                </li>
+                {%- for country in localization.available_countries -%}
+                  {%- if country.iso_code != localization.country.iso_code -%}
+                    <li class="disclosure__item" tabindex="-1">
+                      <a class="disclosure__link link focus-inset" href="#" data-value="{{ country.iso_code }}">
+                        {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+                      </a>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+            <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}"/>
+          </div>
+        {%- endform -%}
+      </localization-form>
+    {%- endcapture -%}
+    {%- endif -%}
+
+    <div class="header-icons">
+      <a href="/search" class="header-search">
+        <svg focusable="false" class="icon icon--search " viewBox="0 0 21 21" role="presentation">
+          <g stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <path d="M19 19l-5-5" stroke-linecap="square"></path>
+              <circle cx="8.5" cy="8.5" r="7.5"></circle>
+          </g>
+        </svg>
+      </a>
+      <a href="/account">
+        <svg focusable="false" class="icon icon--account " viewBox="0 0 20 22" role="presentation">
+          <path d="M10 13c2.82 0 5.33.64 6.98 1.2A3 3 0 0 1 19 17.02V21H1v-3.97a3 3 0 0 1 2.03-2.84A22.35 22.35 0 0 1 10 13zm0 0c-2.76 0-5-3.24-5-6V6a5 5 0 0 1 10 0v1c0 2.76-2.24 6-5 6z" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </a>
+      <a href="/cart">
+        <svg focusable="false" class="icon icon--cart " viewBox="0 0 27 24" role="presentation">
+          <g transform="translate(0 1)" stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <circle stroke-linecap="square" cx="11" cy="20" r="2"></circle>
+              <circle stroke-linecap="square" cx="22" cy="20" r="2"></circle>
+              <path d="M7.31 5h18.27l-1.44 10H9.78L6.22 0H0"></path>
+          </g>
+        </svg>
+      </a>
+    </div>
+    <div class="header-icons__desktop">
+      <a href="/account/login">
+        <div class="header-icons__desktop-login">
+          <span>Login</span>
+          <div>My account</div>
+        </div>
+      </a>
+      <a href="/account/cart" class="header-icons__desktop-cart-container">
+        <div class="header-icons__desktop-cart">
+          <svg focusable="false" class="icon icon--cart " viewBox="0 0 27 24" role="presentation">
+            <g transform="translate(0 1)" stroke-width="2" stroke="currentColor" fill="none" fill-rule="evenodd">
+              <circle stroke-linecap="square" cx="11" cy="20" r="2"></circle>
+              <circle stroke-linecap="square" cx="22" cy="20" r="2"></circle>
+              <path d="M7.31 5h18.27l-1.44 10H9.78L6.22 0H0"></path>
+            </g>
+          </svg>
+          <span class="header-cart__count">0</span>
+        </div>
+        <span>Cart</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% assign menu = linklists['testament-nav'] %}
+{% if menu.links.size > 0 %}
+  <nav class="nav-bar-desktop">
+    <div class="nav-bar-desktop__container">
+      <ul class="nav-list_desktop mega-menu ">
+        {% for link in menu.links %}
+          <li class="mega-menu_link-wrapper">
+            {% if link.links.size > 0 %}
+              <div class="mega-menu__links">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+
+                <div
+                  class="mega-menu__links-dropdown  "
+                  onclick="ToggleMegaMenu('mega-dropdown_links-{{forloop.index}}')"
+                >
+                  <svg focusable="false" class="icon icon--arrow-bottom " viewBox="0 0 12 8" role="presentation">
+                    <path stroke="currentColor" stroke-width="2" d="M10 2L6 6 2 2" fill="none" stroke-linecap="square"></path>
+                  </svg>
+                </div>
+              </div>
+            {% else %}
+              <div class="mega-menu__links">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </div>
+            {% endif %}
+
+            {% if link.links.size > 0 %}
+              <div class="mega-menu-sub toggle-class " id="mega-dropdown_links-{{forloop.index}}">
+                <ul class="mega-menu-submenu  ">
+                  {% for sublink in link.links %}
+                    <li class="mega-menu-subitem">
+                      <a href="{{ sublink.url }}" class="mega-menu-subitem-title">{{ sublink.title }}</a>
+                      {% if sublink.links.size > 0 %}
+                        <ul class="grand-child__list">
+                          {% for grandlink in sublink.links %}
+                            <li>
+                              <a href="{{grandlink.url}}">{{ grandlink.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                  <li class="mega-menu__image-text-1 mega-menu__image-text">
+                    {% if section.settings.image_picker_1 != blank %}
+                      <div>
+                        {% render 'image', mobileSrc:{{section.settings.image_picker_1 }},desktopSrc:{{section.settings.image_picker_1 }} %}
+                      </div>
+                      {% if section.settings.heading_text_image1 != blank %}
+                        <h2>{{ section.settings.heading_text_image1 }}</h2>
+                      {% endif %}
+                      {% if section.settings.paragraph_text_image1 %}
+                        <div>
+                          {{ section.settings.paragraph_text_image1 }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </li>
+                  <li class="mega-menu__image-text-2 mega-menu__image-text">
+                    {% if section.settings.image_picker_2 != blank %}
+                      <div>
+                        {% render 'image', mobileSrc:{{section.settings.image_picker_2 }},desktopSrc:{{section.settings.image_picker_2 }} %}
+                      </div>
+                      {% if section.settings.heading_text_image2 != blank %}
+                        <h2>{{ section.settings.heading_text_image2 }}</h2>
+                      {% endif %}
+                      {% if section.settings.paragraph_text_image2 %}
+                        <div>
+                          {{ section.settings.paragraph_text_image2 }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+{% endif %}
+
+{% style %}
+  .header-section {
+      background:{{section.settings.background_color}};
+  }
+{% endstyle %}
+
+{% schema %}
+{
+    "name":"Header-section",
+    "tag":"header",
+    "class":"header-section",
+    "settings": [
+        {
+        "type":"color",
+        "id":"background_color",
+        "label":"Background color"
+         },
+         {
+            "type": "image_picker",
+            "id":"image_desktop",
+            "label":"Desktop logo image"
+         },
+         {
+            "type": "image_picker",
+            "id":"image_mobile",
+            "label":"Mobile Logo image"
+         },
+         {
+          "type": "image_picker",
+          "id":"image_picker_1",
+          "label": "Image Picker 1"
+         },
+         {
+          "type": "text",
+          "id":"heading_text_image1",
+          "label": "Heading"
+         },
+         {
+          "type": "richtext",
+          "id":"paragraph_text_image1",
+          "label": "description"
+         },
+
+         {
+          "type": "image_picker",
+          "id":"image_picker_2",
+          "label": "Image Picker 2"
+         },
+         {
+          "type": "text",
+          "id":"heading_text_image2",
+          "label": "Heading"
+         },
+         {
+          "type": "richtext",
+          "id":"paragraph_text_image2",
+          "label": "description"
+         },
+         {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "country selector"
+    }
+    ],
+  "presets":[
+    {
+      "name":"Header-section"
+    }
+  ]
+}
+{% endschema %}

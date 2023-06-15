@@ -1,0 +1,161 @@
+{{ 'image-with-text.css' | asset_url | stylesheet_tag }}
+<div class="container">
+  <div class="title">
+    {% if section.settings['section-title'] != blank %}
+    {% endif %}
+  </div>
+  <div class="image-text container image-with-text-{{ section.id }}">
+    <div class="flexbox align-center {{ section.settings.image_position }}">
+      <div class="flexbox-item">
+        <div class="image-text__image">
+          {% assign mobile_image = section.settings.image_mobile | default: section.settings.image_desktop %}
+          {% render 'image', mobileSrc: mobile_image, desktopSrc: section.settings.image_desktop %}
+        </div>
+      </div>
+
+      <div class="flexbox-item">
+        <div class="image-text__content {{ section.settings.text_alignment }} ">
+          {% if section.settings.heading_text != blank %}
+            <h2 class="image-text__heading">{{ section.settings.heading_text }}</h2>
+          {% endif %}
+
+          {% if section.settings.paragraph_text != blank %}
+            <div class="image-text__paragraph">{{ section.settings.paragraph_text }}</div>
+          {% endif %}
+
+          {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+            <div class="image-text__button">
+              <a class="button button--primary button_color-{{ section.id }}" href="{{ section.settings.button_link }}">
+                {{ section.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .image-with-text-{{ section.id }}{
+    background-color:{{section.settings.section_background}};
+
+  }
+
+  .button_color-{{ section.id }}{
+    background-color:{{ section.settings.button_color }};
+    color:{{ section.settings.button_color_text }};
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Image with text section",
+  "tag":"section",
+  "class": "homepage-section",
+  "settings": [
+     {
+      "type": "color",
+      "id": "section_background",
+      "label": "Background",
+      "default": "#c5c5c5"
+    },
+     {
+      "type": "header",
+      "content": "Image settings"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "Image",
+      "info": "1200 x 500px .jpg recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (Mobile)",
+      "info": "600 x 800px .jpg recommended"
+    },
+     {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image alignment",
+      "options": [
+        {
+          "value": "direction-row",
+          "label": "Left"
+        },
+        {
+          "value": "direction-row-reverse",
+          "label": "Right"
+        }
+      ],
+      "default": "direction-row"
+    },
+    {
+      "type": "header",
+      "content": "Content settings"
+    },
+    {
+      "type":"text",
+      "id":"heading_text",
+      "label":"Heading text",
+      "default":"About Company"
+    },
+    {
+      "type":"richtext",
+      "id":"paragraph_text",
+      "label":"Paragraph text",
+      "default":"<p>When it comes to hosting your most ideal picnic, there are so many things to think about. From sauces to trays, we've got you covered</p>"
+    },
+     {
+      "type":"text",
+      "id":"button_text",
+      "label":"Button text"
+    },
+     {
+      "type":"url",
+      "id":"button_link",
+      "label":"Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_color_text",
+      "label": "Button Color Text",
+      "default": "#000000"
+    },
+    {
+      "type":"select",
+      "id":"text_alignment",
+      "label":"Text alignment",
+      "options":[
+        {
+          "value":"text-left",
+          "label":"Left"
+        },
+         {
+          "value":"text-center",
+          "label":"Center"
+        },
+         {
+          "value":"text-right",
+          "label":"Right"
+        }
+      ],
+      "default":"text-center"
+    }
+  ],
+  "presets":[
+    {
+      "name":"Image with text section"
+    }
+  ]
+}
+{% endschema %}

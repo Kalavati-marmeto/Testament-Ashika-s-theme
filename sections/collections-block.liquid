@@ -1,0 +1,56 @@
+{% for blocks in section.blocks %}
+  {{ 'collections-block.css' | asset_url | stylesheet_tag }}
+  <div class="container">
+    <div class="collection_block_items">
+      {% assign collection = section.settings.collection_id %}
+      {% assign collection_limit = section.settings.collection_limit %}
+
+      {% for collection in collections.collection limit: collection_limit %}
+        <div class="collection_block__item column">
+          <img src="{{ collection.featured_image | image_url  }}" alt="image.alt | escape">
+          {% render 'collections-block-access', collection: collection %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
+{% schema %}
+  {
+   "name":"collections block",
+  "tag":"section",
+  "settings":[
+    ],
+    "blocks":[
+      {
+      "name":"dinamic",
+      "type":"dinamic",
+      "limit":3,
+      "settings":[
+
+        {
+          "type":"collection",
+          "id":"collection_id",
+          "label":"Collection"
+        },
+      {
+      "type":"text",
+       "id":"button_text",
+       "label":"butoon",
+      "default":"Read More"
+      },
+         {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+
+      ]
+      }
+    ],
+     "presets":[
+    {
+      "name":"collections block"
+    }
+  ]
+}
+{% endschema %}

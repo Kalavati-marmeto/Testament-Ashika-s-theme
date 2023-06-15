@@ -1,0 +1,144 @@
+.footer-column--nav,
+.footer-column--news{
+   font-size:16px;
+  font-family:"Maven Pro";
+  line-height:25px;
+}
+
+ hr{
+  margin-top:10%;
+/*   color:#dddddd; */
+}
+.footer {
+  background-color: white;
+  padding: 60px 0;
+  font-size: 14px;
+}
+
+
+.submit-btn{
+  font-size:16px;
+}
+
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  flex-wrap:wrap;
+  gap: 40px;
+}
+
+@media(min-width:768px){
+  .footer-top {
+  display: flex;
+  flex-direction: row;
+    justify-content:space-between;
+  row-gap:60px;
+    column-gap:40px;
+}
+  .footer-column--text{
+    width:100%; 
+} 
+}
+
+@media(min-width:1040px){
+   .footer-column--text{
+    width:auto; 
+} 
+  
+
+}
+
+.footer-column--text,
+.footer-column--news{
+  max-width:520px;
+}
+
+
+li {
+  list-style: none;
+  align-items:left;
+}
+
+.footer-column h2 {
+  font-size: 13px;
+  text-tranfrom: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  font-size:18px;
+  font-family:"Maven Pro";
+  font-weight:bold;
+}
+
+.footer-column p,
+.footer-column a {
+  color: black;
+}
+
+.footer-column li + li {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.footer-column a {
+  transition: 0.2s color;
+}
+
+.footer-column a:hover {
+  color: #a29e9e;
+}
+
+ .emaill-container {
+      width:100%;
+      height:50px;
+      border:1px solid #f3f6f6;
+      background-color:#F3F6F6;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:20px;
+    }
+    .email {
+    height:45px;
+    width:70%;
+    }
+  .emaill-input {
+    width:100%;
+    height:45px;
+    border:none;
+    outline:none;
+    color:#303030;
+    font-weight:500;
+    font-size:16px;
+    padding-left:15px;
+    background:transparent;
+  }
+ .submit-{{ section.id }} {
+      height:47px;
+      width:30%;
+      display:flex;
+      justify-content:center;
+      align-items:center;   
+      
+  
+
+    }
+
+.footer-bottom{
+  margin-top:60px;  
+ 
+  
+}
+.footer-copyright{
+  color:black;
+  font-size:16px;
+}
+
+.footer-cards{
+  display:inline-flex;
+  gap:10px;
+  align-content:left;
+  margin-left:-37px;
+}
+
+

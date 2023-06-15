@@ -1,0 +1,146 @@
+.slideshow_images img {
+  height: auto;
+  max-width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.slidesshow_items {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slideshow_heading {
+  margin-bottom: 7px;
+  color: inherit;
+  font-family: Maven Pro, sans-serif;
+  /* font-style: normal; */
+  font-weight: 800;
+  line-height: 1.2;
+  word-spacing: 10px;
+  font-size: 59px;
+}
+
+.slideshow_paragraph {
+  color: inherit;
+  max-width: 650px;
+  margin: 0 auto 22px;
+  font-size: 20px;
+  font-family: Maven Pro, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.main-carousel {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.top-left {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.top-center {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.top-right {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.middle-left {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.middle-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.middle-right {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.bottom-left {
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.bottom-center {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bottom-right {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.slideshow_all_content {
+  position: absolute;
+  top: 0;
+  left: 47px;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+}
+
+.slideshow_content_item {
+  max-width: auto;
+  padding-left: 80px;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 0 30px;
+  line-height: 48px;
+  border-radius: 3px;
+  text-align: center;
+  font-family: Nunito Sans, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+.slideshow_images img {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 950px) {
+  .slideshow_all_content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+  }
+
+  .slideshow_content_item {
+    max-width: auto;
+  }
+}

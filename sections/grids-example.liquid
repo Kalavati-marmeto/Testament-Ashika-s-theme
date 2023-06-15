@@ -1,0 +1,44 @@
+<div class="page-width">
+  
+    <div class="grid grid--1-col  grid--4-col-desktop ">
+      {%  for block in section.blocks %}
+      <div class="grid__item">
+        {% render 'image', class: 'media media--portrait', mobileSrc: block.settings.image_mobile, desktopSrc: block.settings.image_desktop %}
+      </div>
+      {% endfor %}
+    </div>
+  
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Image-grid",
+    "settings": [],
+    "blocks":[
+      {
+        "name":"Image-grid",
+        "type":"image",
+        "settings":[
+        {
+          "type":"image_picker",
+          "id":"image_desktop",
+          "label":"Image"
+        }
+      ]
+     }
+    ],
+    "presets":[
+      {
+        "name":"Image-grid"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

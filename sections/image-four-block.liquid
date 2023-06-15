@@ -1,0 +1,55 @@
+{{ 'image-four-block.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.collection_id != blank %}
+  <div class="ifeatured-collection page-width">
+    <div class="ifeatured-collection_header">
+      {% if section.settings.section_heading != blank %}
+        <h2 class="section-heading">{{ section.settings.section_heading }}</h2>
+      {% endif %}
+
+      <div class="ifeatured-collection__items">
+        {% assign collection = section.settings.collection_id %}
+        {% assign product_limit = section.settings.product_limit %}
+
+        {% for product in collection.products limit: product_limit %}
+          <div class="ifeatured-collections__item column">{% render 'image-four-block-access', product: product %}</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="iviewmore-item"><a href="">View Collection</a></div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Four Image collection",
+  "tag":"section",
+   "class": "homepage-section",
+  "settings": [
+    {
+      "type":"text",
+      "id":"section_heading",
+      "label":"heading",
+      "default":"Best seller"
+    },
+    {
+      "type":"collection",
+      "id":"collection_id",
+      "label":"collection"
+    },
+    {
+      "type":"range",
+      "id":"product_limit",
+      "label":"product limit",
+      "min":4,
+      "max":15,
+      "step":1,
+      "default":5
+    }
+  ],
+  "presets":[
+    {
+      "name":" Four Image collection"
+    }
+  ]
+}
+{% endschema %}

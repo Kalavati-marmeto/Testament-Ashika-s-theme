@@ -1,0 +1,82 @@
+<div class="featured-blog page-width section-{{ section.id }}">
+  <div class="section-heading">
+    {% if section.settings.heading_text != blank %}
+      <h2 class="section-heading">{{ section.settings.heading_text }}</h2>
+    {% endif %}
+  </div>
+  <div class="blog-container grid">
+    <div class="grid grid-column">
+      {% for article in section.settings.blog.articles  %} 
+        <div class="grid__item">
+          {% render 'article-card', article: article %}
+        </div>
+      {% endfor %}
+    </div>
+    <!-- main blog section end -->
+  </div>
+</div>
+
+{% style %}
+    @media only screen and (max-width: 991px){
+      .featured-blog{
+            padding-top: 50px;
+        padding-bottom: 40px;
+      }
+    }
+
+  .featured-blog{
+        padding-top: 20px;
+      }
+
+      
+  .blog-container grid{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content:space-between;
+  }
+
+  .grid .grid-column{
+    column-gap: 50px;
+  }
+  
+  
+
+{% endstyle %}
+{% schema %}
+{
+  "name": "Featured New Blog",
+  
+  "tag": "section",
+   "class": "homepage-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "Quick links"
+    },
+
+    {
+      "type": "color",
+      "id": "heading_text_color",
+      "label": "Heading text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured New Blog"
+    }
+  ]
+}
+{% endschema %}

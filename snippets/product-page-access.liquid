@@ -1,0 +1,22 @@
+{{ 'product-page-access.css' | asset_url | stylesheet_tag }}
+<div class="pproduct-container section-border" >
+
+  <div class="pproduct_card">
+    <a class="pproduct-card__image" href="{{ product.url }}">
+      {% render 'image', class: '', mobileSrc: product.featured_image, desktopSrc: product.featured_image %}
+    </a>
+  </div>
+<div class="ppdetails">
+    <div class="pproduct-card__info">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </div>
+
+    <div class="pproduct-card__price">
+      <span>{{ product.price | money }}</span>
+    </div>
+  <div class="add-to-cart">
+    <a href="">Add to Cart</a>
+</div>
+  
+  </div>
+

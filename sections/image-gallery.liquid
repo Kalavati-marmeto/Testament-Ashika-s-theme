@@ -1,0 +1,83 @@
+{{ 'section-image-gallery.css' | asset_url | stylesheet_tag }}
+
+<div class="image-gallery page-width">
+  {% if section.settings.section_heading != blank %}
+    <h2 class="section-heading">
+      {{ section.settings.section_heading }}
+    </h2>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div class="grid grid--1-col grid--3-col-desktop">
+      {% for block in section.blocks %}
+        <div class="grid__item">
+          <a href="{{ block.settings.image_url }}" class="image-gallery__link">
+            {% if block.settings.image_desktop != blank %}
+              {% assign mobile_image = block.settings.image_mobile | default: block.settings.image_desktop %}
+              {% render 'image', 
+                class: 'media media--portrait mb-15'
+                mobileSrc: mobile_image, 
+                desktopSrc: block.settings.image_desktop 
+              %}
+            {% endif %}
+
+            {% if block.settings.heading_text != blank %}
+              <div class="image-gallery__text center">{{ block.settings.heading_text }}</div>
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Image gallery",
+  "tag": "section",
+  "class": "homepage-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Best seller"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image item",
+      "type": "image-item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (Mobile)"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Image link"
+        },
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image gallery"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+.blog__content {
+  margin-top: 15px;
+}
+.blog-collection_header h2 {
+  position: relative;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: "Maven Pro";
+  font-size: 22.1px;
+  font-weight: bold;
+}
+.blog-collection_header h2::after {
+  content: "";
+  border-bottom: 2px solid #dddddd;
+  width: 80px;
+  height: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.blog__heading {
+  font-weight: bold;
+  font-size: 22.4px;
+  font-family: Maven Pro;
+}
+.blog__paragraph {
+  font-size: 13.6px;
+  font-family: Maven Pro;
+}
+
+.gapp {
+  column-gap: unset;
+}
+
+/* .grid-space {
+  margin-top: 20px;
+}
+ */
